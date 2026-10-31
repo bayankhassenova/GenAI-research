@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GenAI Terminology Relationship Graph</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        #network { width: 100%; height: 600px; border: 1px solid #cccccc; }
+        body { font-family: sans-serif; padding: 20px; }
+    </style>
+</head>
+<body>
+    <h2>GenAI Terminology Relationship Graph</h2>
+    <p>Relationship graph of key concepts in Generative AI Application Development.</p>
+    <div id="network"></div>
+    <script type="text/javascript">
+        var nodes = new vis.DataSet([
+            {id: 1, label: 'LLM', color: '#97C2FC'},
+            {id: 2, label: 'RAG', color: '#FFFF00'},
+            {id: 3, label: 'Vector Embedding', color: '#FB7E81'},
+            {id: 4, label: 'Hallucination', color: '#7BE141'},
+            {id: 5, label: 'Prompt Engineering', color: '#6E6EFD'},
+            {id: 6, label: 'Fine-Tuning', color: '#C2FABC'},
+            {id: 7, label: 'AI Agent', color: '#FFA500'},
+            {id: 8, label: 'Guardrails', color: '#FFC0CB'}
+        ]);
+
+        var edges = new vis.DataSet([
+            {from: 2, to: 1, label: 'enhances'},
+            {from: 2, to: 3, label: 'uses'},
+            {from: 2, to: 4, label: 'mitigates'},
+            {from: 5, to: 1, label: 'guides'},
+            {from: 6, to: 1, label: 'customizes'},
+            {from: 7, to: 1, label: 'powered by'},
+            {from: 8, to: 1, label: 'secures'},
+            {from: 8, to: 4, label: 'prevents'}
+        ]);
+
+        var container = document.getElementById('network');
+        var data = { nodes: nodes, edges: edges };
+        var options = { physics: { enabled: true } };
+        var network = new vis.Network(container, data, options);
+    </script>
+</body>
+</html>
